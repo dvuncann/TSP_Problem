@@ -1,0 +1,39 @@
+def tsp_strip(cities, distances):
+    '''
+    :param cities: file of city names
+    :param distances: file of distances between cities
+    :return: dictionary of city combinations as keys and the corresponding distance as the value
+    '''
+    names = open(cities)
+    lengths = open(distances)
+    solo_list = []
+    tuple_list = []
+    distance_list = []
+    dictionary = {}
+
+
+    for word in names: #strip the cities file into a list of names
+        solo_list.append(word.strip())
+
+    for item in range(len(solo_list) - 1): #combine the list of names into tuples
+        for item_2 in range(len(solo_list) - 1):
+            tuple = (solo_list[item], solo_list[item_2])
+            tuple_list.append(tuple)
+
+    for row in lengths: #strip the lengths into a list of numbers
+        row = row.strip()
+        row = row.split(' ')
+        for item in row:
+            if item != '':
+                distance_list.append(item)
+
+    for item in range(len(tuple_list)): #combine the tuple combinations with the corresponding distances between the two
+        dictionary[tuple_list[item]] = distance_list[item]
+
+    print(dictionary)
+
+    names.close()
+    lengths.close()
+
+
+tsp_strip('seven_cities_names.txt', 'seven_cities_dist.txt')
