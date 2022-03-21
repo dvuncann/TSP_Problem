@@ -63,4 +63,49 @@ road = ['Alpha', 'Beta', 'Delta', 'Alpha'] #example route
 
 tsp_distance(road, 'seven_cities_names.txt', 'seven_cities_dist.txt')
 
+def distance(route):
+    '''
+    param route: list of cities names
+    Output: total route distance
+    '''
+    count = 0 #create a count to tally up distances between cities
+    for item, nxt in item_and_next(route): # use item_and_next to find current city and the next one
+        pair = (item,nxt) #make a tuple out of them
+        #print (pair)
+        if pair in dictionary: #find the distance of the tuple (city pair) in dictionary (which is now global from tsp_strip)
+            count = count + float(dictionary[pair]) #add the distance to the count
+    #print(count) #return total count when all pair is found
+    return(count)
+
+def tsp_greedy(cities, distances, start):
+    '''
+    :param cities: file of city names
+    :param distances: file of distances
+    :param start: string, name of starting city
+    :return: list of shortest path found by greedy algorithm and total distance of that path
+    '''
+    tsp_strip(cities,distances)
+    current_city = start
+    route =[start]
+    copy = solo_list
+    for cities in range(len(copy)-1):
+        print(current_city)
+        try: solo_list.remove(current_city)
+        except: pass
+        nearest = 999999
+        for city in solo_list:
+            if distance([current_city,city]) < nearest:
+                nearest = distance([current_city,city])
+                next = city
+            else:
+                pass
+        route.append(next)
+        current_city = next
+    route.append(start)
+    print(route)
+    print (distance(route))
+    return(route)
+
+tsp_greedy('seven_cities_names.txt', 'seven_cities_dist.txt','Alpha')
+
 
