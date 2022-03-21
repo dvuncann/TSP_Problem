@@ -23,8 +23,8 @@ def tsp_strip(cities, distances):
     for word in names: #strip the cities file into a list of names
         solo_list.append(word.strip())
 
-    for item in range(len(solo_list) - 1): #combine the list of names into tuples
-        for item_2 in range(len(solo_list) - 1):
+    for item in range(len(solo_list)): #combine the list of names into tuples
+        for item_2 in range(len(solo_list)):
             tuple = (solo_list[item], solo_list[item_2])
             tuple_list.append(tuple)
 
