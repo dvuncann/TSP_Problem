@@ -42,27 +42,8 @@ def tsp_strip(cities, distances):
     names.close()
     lengths.close()
 
-def tsp_distance(route, cities, distances):
-    '''
-    param cities: file of city names
-    param distances: file of distances between cities
-    param route: list of cities names
-    Output: total route distance
-    '''
-    count = 0 #create a count to tally up distances between cities
-    tsp_strip(cities, distances) #use strip function to get dictionary
-    for item, nxt in item_and_next(route): # use item_and_next to find current city and the next one
-        pair = (item,nxt) #make a tuple out of them
-        print (pair)
-        if pair in dictionary: #find the distance of the tuple (city pair) in dictionary (which is now global from tsp_strip)
-            count = count + float(dictionary[pair]) #add the distance to the count
-    print(count) #return total count when all pair is found
 
-road = ['Alpha', 'Beta', 'Delta', 'Alpha'] #example route
-
-tsp_distance(road, 'seven_cities_names.txt', 'seven_cities_dist.txt')
-
-def distance(route):
+def tsp_distance(route):
     '''
     param route: list of cities names
     Output: total route distance
@@ -92,8 +73,8 @@ def tsp_greedy(cities, distances, start):
         except: pass
         nearest = 999999
         for city in solo_list:
-            if distance([current_city,city]) < nearest:
-                nearest = distance([current_city,city])
+            if tsp_distance([current_city,city]) < nearest:
+                nearest = tsp_distance([current_city,city])
                 next = city
             else:
                 pass
@@ -101,7 +82,7 @@ def tsp_greedy(cities, distances, start):
         current_city = next
     route.append(start)
     print(route)
-    print (distance(route))
+    print (tsp_distance(route))
     return(route)
 
 tsp_greedy('seven_cities_names.txt', 'seven_cities_dist.txt','Alpha')
