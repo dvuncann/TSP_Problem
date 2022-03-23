@@ -38,7 +38,6 @@ def tsp_strip(cities, distances):
     for item in range(len(tuple_list)): #combine the tuple combinations with the corresponding distances between the two
         dictionary[tuple_list[item]] = distance_list[item]
 
-    print (dictionary)
     return dictionary
     names.close()
     lengths.close()
@@ -89,7 +88,6 @@ def tsp_greedy(cities, distances, start):
     route =[start]
     copy = solo_list
     for cities in range(len(copy)-1):
-        print(current_city)
         try: solo_list.remove(current_city)
         except: pass
         nearest = 999999
