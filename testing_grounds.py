@@ -13,6 +13,7 @@ def tsp_strip(cities, distances):
     '''
     names = open(cities)
     lengths = open(distances)
+    global solo_list
     solo_list = []
     tuple_list = []
     distance_list = []
