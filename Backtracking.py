@@ -71,25 +71,25 @@ def tsp_greedy(cities, distances, start):
     :param start: string, name of starting city
     :return: list of shortest path found by greedy algorithm and total distance of that path
     '''
-    tsp_strip(cities,distances)
+    tsp_strip(cities,distances) # collect information from files
     current_city = start
     route =[start]
-    copy = solo_list
-    for cities in range(len(copy)-1):
+    copy = solo_list # set current city, add to route, create copy of city list to edit
+    for cities in range(len(copy)-1): 
         try: solo_list.remove(current_city)
         except: pass
-        nearest = 999999
+        nearest = 999999 # try to remove current city from list if it has not been removed already, set large intial distance to find smaller values
         for city in solo_list:
             if tsp_distance([current_city,city]) < nearest:
-                nearest = tsp_distance([current_city,city])
+                nearest = tsp_distance([current_city,city]) # loop through to find closest city, update next and distance btw cities
                 next = city
             else:
                 pass
         route.append(next)
-        current_city = next
-    route.append(start)
+        current_city = next # 'move to' next city in the route
+    route.append(start) # after all cities exhausted, return to start
     print(route, '=', tsp_distance(route))
-    return(route)
+    return(route) # print/return route and distance
 
 tsp_greedy('seven_cities_names.txt', 'seven_cities_dist.txt','Alpha')
 
